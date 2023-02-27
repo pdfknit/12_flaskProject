@@ -1,9 +1,17 @@
 {% extends '/base.html' %}
 
-{% block title %}Users List {% endblock %}
+{% block title %}
+    User #{{ user.id }}
+{% endblock %}
+
 
 
 {% block body %}
-        <h1> {{ username }} </h1>
+    <h1>
+        {{ user.username }}
+    </h1>
+    {% if user.is_staff %}
+        <span class="badge bg-secondary">staff</span>
+    {% endif %}
 
-    {% endblock %}
+{% endblock %}
