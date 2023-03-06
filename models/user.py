@@ -7,7 +7,7 @@ from models.database import db
 class User(db.Model, UserMixin):
     id = Column(Integer, primary_key=True)
     username = Column(String(80), unique=True, nullable=False)
-    email = Column(String(80), unique=True, nullable=False)
+    email = Column(String(255), nullable=False, default="", server_default="")
     is_staff = Column(Boolean, nullable=False, default=False)
 
 

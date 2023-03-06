@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_login import LoginManager
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 from articles.views import article
@@ -9,6 +9,8 @@ from models.database import db
 
 from user.views import user
 from views import main_page
+
+migrate = Migrate()
 
 
 def create_app() -> Flask:
@@ -20,6 +22,8 @@ def create_app() -> Flask:
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     login_manager.init_app(app)
     db.init_app(app)
+    migrate.init_app(app, db, compare_type=True)
+
     return app
 
 
