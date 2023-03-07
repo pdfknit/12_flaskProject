@@ -1,8 +1,11 @@
 from flask import Blueprint, render_template
 from werkzeug.exceptions import NotFound
 
-from constants import ARTICLES
-
+ARTICLES = {
+    1: 'Статья 1',
+    2: 'Статья 1',
+    3: 'Статья 1',
+}
 article = Blueprint(name='article', import_name=__name__, static_folder='../static', url_prefix='/articles')
 
 
