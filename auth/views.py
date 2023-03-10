@@ -115,6 +115,6 @@ def login():
             return render_template("auth/login.html", form=form, error="invalid username or password")
 
         login_user(user)
-        return redirect(url_for("index"))
+        return redirect(url_for("main_page.main"))
 
     return render_template("auth/login.html", form=form)
