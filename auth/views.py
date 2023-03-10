@@ -36,7 +36,7 @@ def login_as():
         raise NotFound
 
     if request.method == "GET":
-        return render_template("auth/login-as.html")
+        return render_template("auth/login.html")
     username = request.form.get("username")
 
     if not username:
@@ -95,21 +95,21 @@ def register():
         else:
             current_app.logger.info("Created user %s", user)
             login_user(user)
-            return redirect(url_for("index"))
+            return redirect(url_for("main_page.main"))
     return render_template("auth/register.html", form=form, error=error)
 
 
 @auth_app.route("/login/", methods=["GET", "POST"], endpoint="login")
 def login():
-    if current_user.is_authenticated:
-        return redirect("index")
+    # if current_user.is_authenticated:
+    #     return redirect("main_page.main")
     form = LoginForm(request.form)
 
     if request.method == "POST" and form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).one_or_none()
 
         if user is None:
-            return render_template("auth/login.html", form=form, error="username doesn't exist")
+            return render_template("auth/login-as.html", form=form, error="username doesn't exist")
 
         if not user.validate_password(form.password.data):
             return render_template("auth/login.html", form=form, error="invalid username or password")
@@ -117,4 +117,4 @@ def login():
         login_user(user)
         return redirect(url_for("main_page.main"))
 
-    return render_template("auth/login.html", form=form)
+    return render_template("auth/login-as.html", form=form)
