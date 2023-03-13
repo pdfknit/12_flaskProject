@@ -1,11 +1,9 @@
 from models.user import User
-# from flask_sqlalchemy import SQLAlchemy
-
-# db = SQLAlchemy()
-# __all__ = [
-#     "db",
-# ]
+from models.author import Author
+from models.article import Article
 
 __all__ = [
     "User",
+    "Author",
+    "Article",
 ]
