@@ -1,11 +1,9 @@
 from flask import Flask
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-
 from articles.views import article
-# from config import secret_key
 from auth.views import auth_app, login_manager
 from models.database import db
+from security import flask_bcrypt
 
 from user.views import user
 from views import main_page
@@ -16,13 +14,13 @@ migrate = Migrate()
 def create_app() -> Flask:
     app = Flask(__name__)
     register_blueprints(app)
-    # app.config['SECRET_KEY'] = secret_key
     app.secret_key = 'super secret key'
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog2.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     login_manager.init_app(app)
     db.init_app(app)
     migrate.init_app(app, db, compare_type=True)
+    flask_bcrypt.init_app(app)
 
     return app
 
