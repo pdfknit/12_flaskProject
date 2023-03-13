@@ -9,7 +9,6 @@ user = Blueprint(name='user', import_name=__name__, static_folder='../static', u
 @user.route('/')
 def user_list():
     users = User.query.all()
-    print('!!!!', users)
     return render_template('user/users_list.html',
                            users=users
                            )

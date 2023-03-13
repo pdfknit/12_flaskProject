@@ -1,9 +1,9 @@
-import flask_bcrypt
 from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String, Boolean, LargeBinary
 from sqlalchemy.orm import relationship
 
 from models.database import db
+from security import flask_bcrypt
 
 
 class User(db.Model, UserMixin):

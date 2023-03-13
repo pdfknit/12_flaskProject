@@ -9,7 +9,7 @@
             <ul>
                 {% for author in authors %}
                     <li>
-                        #{{ author.id }} ({{ author.user.username }})
+                        {{ author.id }} ({{ author.user.username }})
                     </li>
                 {% endfor %}
             </ul>

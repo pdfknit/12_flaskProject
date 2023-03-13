@@ -7,4 +7,4 @@ authors = Blueprint(name='authors', import_name=__name__, static_folder='../stat
 @authors.route("/", endpoint="list")
 def authors_list():
     authors = Author.query.all()
-    return render_template("authors/list.html", authors=authors)
+    return render_template("author/list.html", authors=authors)

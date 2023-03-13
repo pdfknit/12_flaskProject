@@ -6,11 +6,13 @@
     <div class="row">
         <div class="col">
             <h1>All articles</h1>
-            {% for article_id in articles %}
-                <ul>
-                    <li><a href="{{ url_for('article.get_article', pk=article_id) }}">{{ articles[article_id] }}</a></li>
-                </ul>
+            {% for article in all_articles %}
+                <li>
+                    <a href="{{ url_for('article.article_details', article_id=article.id) }}">{{ article.title }}</a>
+                </li>
             {% endfor %}
+
+            <a href="{{ url_for('article.create') }}">Create new</a>
         </div>
     </div>
 
