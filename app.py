@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
+
+from admin import admin
 from articles.views import article
 from auth.views import auth_app, login_manager
 from author.views import authors
@@ -20,6 +22,7 @@ def create_app() -> Flask:
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     login_manager.init_app(app)
     db.init_app(app)
+    admin.init_app(app)
     migrate.init_app(app, db, compare_type=True)
     flask_bcrypt.init_app(app)
 
