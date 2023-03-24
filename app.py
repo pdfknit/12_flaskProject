@@ -2,6 +2,8 @@ from flask import Flask
 from flask_migrate import Migrate
 
 from admin import admin
+# from api import init_api
+# from api import init_api
 from articles.views import article
 from auth.views import auth_app, login_manager
 from author.views import authors
@@ -25,6 +27,7 @@ def create_app() -> Flask:
     admin.init_app(app)
     migrate.init_app(app, db, compare_type=True)
     flask_bcrypt.init_app(app)
+    # api = init_api(app)
 
     return app
 
